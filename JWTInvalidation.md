@@ -14,7 +14,7 @@ The downside of this approach is, until the token is expired, you can access the
 Unfortunately, with JWT, there is no direct approach to invalidate the token, with brainstorming we identified the following approach:
 -	#### Delete/ Invalidate token in Browser: 
 on logout we can send invalidate token, so that next request will not work. Let’s say I have stored my older JWT, or someone was snipping to user system he will still have the valid token and can misuse for its designated lifetime
--	#### Reducing the tome expiry time:  
+-	#### Reducing the expiry time:  
 Can help to an extent but still threat will exist.
 -	#### Storing the tokens on server side:
 Storing the tokens of server side and marking them active or inactive can help out to mitigate the risk. This will be require and additional layer of code and call to make this functional. We worked on this approach and instead of using database and additional calls used Azure API management native functionality Limit call rate by key to achieve this.
