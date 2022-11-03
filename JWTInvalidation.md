@@ -26,7 +26,7 @@ For other calls before log out, as the increment condition is false  it does not
 On the logout API we enable Limit call rate by key policy, 
 -	using JWT as key 
 -	limit-by-key calls as 1
--	A True increment condition
+-	**true** increment condition
 
  ![Logout Policy](/logout.svg)
  
@@ -34,13 +34,14 @@ On the logout API we enable Limit call rate by key policy,
 A Global or higher level Limit call rate by key policy was created , which can be checked at each API calls, using
 -	using JWT as key 
 -	limit-by-key calls as 1
--	a false increment condition
+-	**false** increment condition
 
  ![validating policy](/validate.svg)
  
 #### Pros of this Approach:
--	Leveraging APIM functionality no coding is required
--	Can hand Enterprise level load 
+-	Leveraging APIM functionality
+-	no coding is required
+-	Can handle Enterprise level load 
 -	Minimal addition latency introduced
 
 #### Cons:
@@ -48,7 +49,7 @@ A Global or higher level Limit call rate by key policy was created , which can b
 -	Should be using APIM
 
 #### Reference 
-- https://www.rfc-editor.org/rfc/rfc7519
-- https://learn.microsoft.com/en-us/azure/api-management/api-management-access-restriction-policies#LimitCallRateByKey
+- [JWT](https://www.rfc-editor.org/rfc/rfc7519)
+- [APIM Policy](https://learn.microsoft.com/en-us/azure/api-management/api-management-access-restriction-policies#LimitCallRateByKey)
 
 
