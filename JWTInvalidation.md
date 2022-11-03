@@ -20,7 +20,7 @@ Can help to an extent but still threat will exist.
 Storing the tokens of server side and marking them active or inactive can help out to mitigate the risk. This will be require and additional layer of code and call to make this functional. We worked on this approach and instead of using database and additional calls used Azure API management native functionality Limit call rate by key to achieve this.
   
 ### How APIM helps here:
-So once the user calls the log out API, his JWT credentials count is increased by 1 , and next time he want to call any other API, rate limit by key triggers as limit is set to 1. 
+Once the user calls the log out API, his JWT credentials count is increased by 1 , and next time he want to call any other API, rate limit by key triggers as limit is set to 1. 
 For other calls before log out, as the increment condition is false  it does not trigger the rete limit by key. 
 #### For Enabling At logout: 
 On the logout API we enable Limit call rate by key policy, 
@@ -28,19 +28,21 @@ On the logout API we enable Limit call rate by key policy,
 -	limit-by-key calls as 1
 -	A True increment condition
 
- ![Logout Policy](https://github.com/hmntrathore/hmntrathore.github.io/blob/main/logout.svg)
+ ![Logout Policy](/logout.svg)
  
-### For Valitdating
+### For Valitdating:
 A Global or higher level Limit call rate by key policy was created , which can be checked at each API calls, using
 -	using JWT as key 
 -	limit-by-key calls as 1
 -	a false increment condition
 
- ![validating policy](https://github.com/hmntrathore/hmntrathore.github.io/blob/main/validate.svg)
+ ![validating policy](/validate.svg)
+ 
 #### Pros of this Approach:
 -	Leveraging APIM functionality no coding is required
 -	Can hand Enterprise level load 
 -	Minimal addition latency introduced
+
 #### Cons:
 -	All the calls should be via API
 -	Should be using APIM
