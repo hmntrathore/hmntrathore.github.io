@@ -3,8 +3,8 @@
 Imagine a world where you can seamlessly and securely exchange information between parties without compromising on data integrity or confidentiality. JSON Web Tokens (JWT) make this vision a reality. JWTs are compact, URL-safe means of representing claims to be transferred between two parties. They are widely used across the industry for authorization and information exchange, making them an essential tool in the modern developer's arsenal. In this blog post, we will delve deep into what JWTs are, how they work, and why they are invaluable in ensuring secure communication.
 
 ## Background Information
-### 
-What is a JSON Web Token (JWT)?
+
+### What is a JSON Web Token (JWT)?
 
 A JSON Web Token (JWT) is a compact, URL-safe token that is used to represent claims between two parties. These claims are encoded as a JSON object and can be digitally signed or encrypted to ensure the integrity and confidentiality of the data. JWTs are commonly used for authorization purposes, enabling secure and efficient communication between a client and a server.\n\n### Structure of a JWT
 
