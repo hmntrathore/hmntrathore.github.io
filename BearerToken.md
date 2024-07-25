@@ -76,4 +76,4 @@ In summary, retrieving a bearer token via API for Azure involves creating an Azu
 By following these steps, you can integrate Azure AD authentication seamlessly into your applications and securely interact with Azure services via APIs. Adjustments may be needed based on specific Azure configurations or security policies in your organization.
 
 
-###[Home](https://hmntrathore.github.io)
+### [Home](https://hmntrathore.github.io)
