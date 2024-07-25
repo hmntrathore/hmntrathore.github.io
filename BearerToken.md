@@ -55,10 +55,15 @@ Now, use Postman to retrieve the bearer token for your Azure AD application.
     - `client_secret`: `{Your Client Secret from step 2}`
     - `scope`: `https://storage.azure.com/.default`
 
+![Request](/request.jpg)
+
 - **Send Request:**
   - Click on **Send** in Postman.
   - Postman will send the request to Azure AD token endpoint.
   - The response will contain an access token. Copy this token for subsequent API requests.
+    
+![LResponse](/response.jpg)
+
 
 #### 5. Validate the Token
 
