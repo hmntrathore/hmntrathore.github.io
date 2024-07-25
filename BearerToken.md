@@ -74,3 +74,6 @@ After obtaining the access token, you can validate its correctness by decoding i
 In summary, retrieving a bearer token via API for Azure involves creating an Azure AD application, generating client credentials, assigning appropriate roles, and using tools like Postman to obtain and validate the token. This process ensures secure authentication and access to Azure resources through APIs.
 
 By following these steps, you can integrate Azure AD authentication seamlessly into your applications and securely interact with Azure services via APIs. Adjustments may be needed based on specific Azure configurations or security policies in your organization.
+
+
+###[Home](https://hmntrathore.github.io)
