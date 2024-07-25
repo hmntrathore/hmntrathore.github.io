@@ -12,10 +12,10 @@ Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/hmntratho
 
 ## Articles
 
-### How to Retrieve a Bearer Token via API for Azure
+### How to Retrieve a Bearer Token via API for Azure(https://hmntrathore.github.io/BearerToken)
 Learn how to authenticate and authorize API requests to Azure services securely by retrieving a bearer token. Read more [here](https://hmntrathore.github.io/BearerToken).
 
-### Invalidating JWT with Azure API Management (APIM)
+### Invalidating JWT with Azure API Management (APIM)(https://hmntrathore.github.io/JWTInvalidation)
 Explore strategies to invalidate JSON Web Tokens (JWT) to ensure secure communication and mitigate risks associated with unauthorized access. Read more [here](https://hmntrathore.github.io/JWTInvalidation).
 
 ---
