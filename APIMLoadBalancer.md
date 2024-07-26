@@ -76,7 +76,7 @@ You need to configure load balancing such that 80% of the traffic is directed to
    - **subscriptionId**: Your Azure subscription ID (UUID format).
    - **resourceGroupName**: The name of the resource group containing your API Management service.
    - **serviceName**: The name of your API Management service.
-   - **backendId**: A unique identifier for the backend entity.
+   - **backendId**: A unique identifier for the backend entity (this will be the backend Name).
    - **api-version**: The API version to use for this request.
 
    **Authentication:**
@@ -86,6 +86,8 @@ You need to configure load balancing such that 80% of the traffic is directed to
    ```
    https://login.microsoftonline.com/common/oauth2/authorize
    ```
+   detailed steps to obtain a bearer token can be found at [How to Retrieve a Bearer Token via API for Azure](https://hmntrathore.github.io/BearerToken)
+
 
    **Sample Request Body:**
 
@@ -112,6 +114,23 @@ You need to configure load balancing such that 80% of the traffic is directed to
    }
    ```
 
+     #### Key Parameters for Backend Service Configuration
+
+      1. **id**: Backend Service Identifier
+
+         - **Purpose**: The **`id`** field uniquely identifies a backend service within your API Management service. This ID is essential for referencing the specific backend you wish to configure.
+         - **Format**: The value of **`id`** typically follows the format `"/backends/{serviceBackendName}"`. Here, `{serviceBackendName}` is a placeholder for the actual name you assigned to your backend service during its creation.
+         - **Example**: If you named your backend service for API A as `backendLBA`, then the **`id`** for this backend would be `"/backends/backendLBA"`.
+
+      2. **priority**: Service Priority Level
+
+         - **Purpose**: The **`priority`** field determines the order in which backend services are considered when distributing traffic. This is useful if you have multiple backends and want to control which services are favored under certain conditions.
+
+      3. **weight**: Traffic Distribution Weight
+
+         - **Purpose**: The **weight** field specifies the proportion of traffic that should be directed to a particular backend service. It helps in balancing the load among multiple services based on the assigned weights.
+
+  
    **Expected Response:**
 
    On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created.
@@ -128,7 +147,5 @@ You need to configure load balancing such that 80% of the traffic is directed to
 
    With the load balancer configured, you can now test the traffic distribution. Ensure that 80% of the requests are directed to **API A** and 20% to **API B**. This can be done using API testing tools or by sending a high volume of requests and observing the traffic distribution.
 
-
-### **Conclusion**
 
 APIM’s load balancing feature is a powerful tool for optimizing traffic management and addressing issues such as token exhaustion, throttling, and slow responses. By utilizing strategies like round-robin, weighted, and priority-based distribution, and configuring weights and priorities from 1 to 100, you can enhance the performance, reliability, and scalability of your API infrastructure. Effective configuration and management of backend pools will help ensure that your APIs remain resilient and efficient, meeting the demands of both current and future traffic.
