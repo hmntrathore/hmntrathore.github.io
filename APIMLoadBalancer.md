@@ -151,3 +151,6 @@ You need to configure load balancing such that 80% of the traffic is directed to
 
 
 APIM’s load balancing feature is a powerful tool for optimizing traffic management and addressing issues such as token exhaustion, throttling, and slow responses. By utilizing strategies like round-robin, weighted, and priority-based distribution, and configuring weights and priorities from 1 to 100, you can enhance the performance, reliability, and scalability of your API infrastructure. Effective configuration and management of backend pools will help ensure that your APIs remain resilient and efficient, meeting the demands of both current and future traffic.
+
+
+### [Home](https://hmntrathore.github.io) 
