@@ -18,6 +18,11 @@ Learn how to authenticate and authorize API requests to Azure services securely 
 ### [Invalidating JWT with Azure API Management (APIM)](https://hmntrathore.github.io/JWTInvalidation)
 Explore strategies to invalidate JSON Web Tokens (JWT) to ensure secure communication and mitigate risks associated with unauthorized access. Read more [here](https://hmntrathore.github.io/JWTInvalidation).
 
+
+### [Load Balancing with API Management (APIM)](https://hmntrathore.github.io/APIMLoadBalancer)
+ APIM’s advanced load balancing capabilities, providing a thorough overview and practical guidance on effective configuration. Read more [here](https://hmntrathore.github.io/APIMLoadBalancer).
+
+
 ---
 
 Thank you for visiting my blog!
