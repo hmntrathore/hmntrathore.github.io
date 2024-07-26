@@ -116,24 +116,20 @@ You need to configure load balancing such that 80% of the traffic is directed to
   ![Request](/Images/APILB/sampleLbPoolRequest.jpg)
    #### Key Parameters for Backend Service Configuration  ####
 
-      1. **id**: Backend Service Identifier
-
-         - **Purpose**: The **`id`** field uniquely identifies a backend service within your API Management service. This ID is essential for referencing the specific backend you wish to configure.
+   - **id**: Backend Service Identifier
+      - **Purpose**: The **`id`** field uniquely identifies a backend service within your API Management service. This ID is essential for referencing the specific backend you wish to configure.
          - **Format**: The value of **`id`** typically follows the format `"/backends/{serviceBackendName}"`. Here, `{serviceBackendName}` is a placeholder for the actual name you assigned to your backend service during its creation.
-         - **Example**: If you named your backend service for API A as `backendLBA`, then the **`id`** for this backend would be `"/backends/backendLBA"`.
+      - **Example**: If you named your backend service for API A as `backendLBA`, then the **`id`** for this backend would be `"/backends/backendLBA"`.
 
-      2. **priority**: Service Priority Level
+   - **priority**: Service Priority Level
+      - ***`priority`** field determines the order in which backend services are considered when distributing traffic. This is useful if you have multiple backends and want to control which services are favored under certain conditions.
 
-         - ***`priority`** field determines the order in which backend services are considered when distributing traffic. This is useful if you have multiple backends and want to control which services are favored under certain conditions.
-
-      3. **weight**: Traffic Distribution Weight
-
+   - **weight**: Traffic Distribution Weight
          - **weight** field specifies the proportion of traffic that should be directed to a particular backend service. It helps in balancing the load among multiple services based on the assigned weights.
 
+      **Expected Response:**
+         On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created. We should be able to see the backend created in Azure Portal
 
-
-   **Expected Response:**
-      On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created. We should be able to see the backend created in Azure Portal
 
 3. **Update API Configuration to Use the Load Balancer**
    After setting up the backend pool, update your API configuration to use the newly created load balancer. This involves adding the following Inbound policy to your API configuration:
@@ -143,7 +139,6 @@ You need to configure load balancing such that 80% of the traffic is directed to
    ```
 
 4. **Test the Configuration**
-
    With the load balancer configured, you can now test the traffic distribution. Ensure that 80% of the requests are directed to **API A** and 20% to **API B**. This can be done using API testing tools or by sending a high volume of requests and observing the traffic distribution.
 
 5. **View Configuration**: Call the API with a `GET` request.
