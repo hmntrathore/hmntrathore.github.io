@@ -54,14 +54,14 @@ You need to configure load balancing such that 80% of the traffic is directed to
 
 ### Steps to Configure Load Balancing
 
-1. **Create Backends for Each API**
+- **Create Backends for Each API**
 
    First, you need to create backend services for both APIs. This can be accomplished using Azure Management REST API. For simplicity, we will use identifiers for backend services as follows:
 
    - **Backend for API A**: `backendLBA`
    - **Backend for API B**: `backendLBB`
  ![Backend](/Images/APILB/BackendB.jpg)
-2. **Define the Backend Pool Using REST API**
+- **Define the Backend Pool Using REST API**
 
    The backend pool configuration specifies how traffic is distributed among the backend services. We will use the Azure Management REST API to create this backend pool with weighted load balancing.
 
@@ -114,6 +114,8 @@ You need to configure load balancing such that 80% of the traffic is directed to
    }
    ```
   ![Request](/Images/APILB/sampleLbPoolRequest.jpg)
+    
+          
    ### Key Parameters for Backend Service Configuration  ####
 
    - **id**: Backend Service Identifier
@@ -131,21 +133,23 @@ You need to configure load balancing such that 80% of the traffic is directed to
          On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created. We should be able to see the backend created in Azure Portal
 
 
-3. **Update API Configuration to Use the Load Balancer**
+### **Update API Configuration to Use the Load Balancer**
    After setting up the backend pool, update your API configuration to use the newly created load balancer. This involves adding the following Inbound policy to your API configuration:
 
    ```xml
    <set-backend-service backend-id="LBBackend" />
    ```
 
-4. **Test the Configuration**
+### **Test the Configuration**
    With the load balancer configured, you can now test the traffic distribution. Ensure that 80% of the requests are directed to **API A** and 20% to **API B**. This can be done using API testing tools or by sending a high volume of requests and observing the traffic distribution.
 
-5. **View Configuration**: Call the API with a `GET` request.
+### **View Configuration**
+Call the API with a `GET` request.
    ```http
    GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backends/{backendId}?api-version=2023-09-01-preview
    ```
-6. **Update Configuration**: Call the API with a `PUT` request. Upon a successful update, a `200 OK` status code will be received instead of a `201 Created` status code.
+### **Update Configuration**
+Call the API with a `PUT` request. Upon a successful update, a `200 OK` status code will be received instead of a `201 Created` status code.
 
 
 APIM’s load balancing feature is a powerful tool for optimizing traffic management and addressing issues such as token exhaustion, throttling, and slow responses. By utilizing strategies like round-robin, weighted, and priority-based distribution, and configuring weights and priorities from 1 to 100, you can enhance the performance, reliability, and scalability of your API infrastructure. Effective configuration and management of backend pools will help ensure that your APIs remain resilient and efficient, meeting the demands of both current and future traffic.
