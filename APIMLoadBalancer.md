@@ -60,7 +60,7 @@ You need to configure load balancing such that 80% of the traffic is directed to
 
    - **Backend for API A**: `backendLBA`
    - **Backend for API B**: `backendLBB`
-
+ (/Images/APILB/BackendB.jpg)
 2. **Define the Backend Pool Using REST API**
 
    The backend pool configuration specifies how traffic is distributed among the backend services. We will use the Azure Management REST API to create this backend pool with weighted load balancing.
@@ -113,7 +113,7 @@ You need to configure load balancing such that 80% of the traffic is directed to
      }
    }
    ```
-
+  (/Images/APILB/sampleLbPoolRequest.jpg)
    #### Key Parameters for Backend Service Configuration
 
       1. **id**: Backend Service Identifier
