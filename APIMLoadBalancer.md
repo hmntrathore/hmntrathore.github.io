@@ -43,6 +43,91 @@ APIM provides several load balancing strategies to cater to different traffic ma
 APIM allows up to 30 backends to be included in a single load balancing pool. This flexibility supports a range of backend configurations and traffic management strategies. Here’s how to configure backend pools effectively:
 
 
+#### Scenario Overview
+
+Assume you have two APIs:
+
+- **API A**: `https://hemnttest/LBDemo/APIA`
+- **API B**: `https://hemnttest/LBDemo/APIB`
+
+You need to configure load balancing such that 80% of the traffic is directed to **API A** and 20% to **API B**. 
+
+#### Steps to Configure Load Balancing
+
+1. **Create Backends for Each API**
+
+   First, you need to create backend services for both APIs. This can be accomplished using Azure Management REST API. For simplicity, we will use identifiers for backend services as follows:
+
+   - **Backend for API A**: `backendLBA`
+   - **Backend for API B**: `backendLBB`
+
+2. **Define the Backend Pool Using REST API**
+
+   The backend pool configuration specifies how traffic is distributed among the backend services. We will use the Azure Management REST API to create this backend pool with weighted load balancing.
+
+   **API Endpoint for Creating Backend Pool:**
+
+   ```http
+   PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiManagement/service/{serviceName}/backends/{backendId}?api-version=2023-09-01-preview
+   ```
+
+   **Parameters:**
+
+   - **subscriptionId**: Your Azure subscription ID (UUID format).
+   - **resourceGroupName**: The name of the resource group containing your API Management service.
+   - **serviceName**: The name of your API Management service.
+   - **backendId**: A unique identifier for the backend entity.
+   - **api-version**: The API version to use for this request.
+
+   **Authentication:**
+
+   You must authenticate using Azure Active Directory OAuth2. You can obtain a bearer token using the following URL:
+
+   ```
+   https://login.microsoftonline.com/common/oauth2/authorize
+   ```
+
+   **Sample Request Body:**
+
+   ```json
+   {
+     "properties": {
+       "type": "Pool",
+       "description": "Demo of weighted load balancing using API management",
+       "pool": {
+         "services": [
+           {
+             "id": "/backends/backendLBA",
+             "priority": 1,
+             "weight": 80
+           },
+           {
+             "id": "/backends/backendLBB",
+             "priority": 1,
+             "weight": 20
+           }
+         ]
+       }
+     }
+   }
+   ```
+
+   **Expected Response:**
+
+   On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created.
+
+3. **Update API Configuration to Use the Load Balancer**
+
+   After setting up the backend pool, update your API configuration to use the newly created load balancer. This involves adding the following Inbound policy to your API configuration:
+
+   ```xml
+   <set-backend-service backend-id="LBBackend" />
+   ```
+
+4. **Test the Configuration**
+
+   With the load balancer configured, you can now test the traffic distribution. Ensure that 80% of the requests are directed to **API A** and 20% to **API B**. This can be done using API testing tools or by sending a high volume of requests and observing the traffic distribution.
+
 
 ### **Conclusion**
 
