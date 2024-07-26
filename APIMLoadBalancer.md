@@ -1,14 +1,14 @@
-### Load Balancing with API Management (APIM)
+## Load Balancing with API Management (APIM)
 
 Load balancing is a fundamental aspect of scaling, crucial for optimizing performance, ensuring reliability, and maintaining scalability. API Management (APIM) has introduced an advanced load balancing feature specifically designed to address challenges related to token exhaustion and throttling, particularly in environments leveraging Open AI and similar high-demand services. This article provides a detailed examination of APIM’s load balancing capabilities, its background, and how to configure it effectively.
 
-#### **Background: Mitigating Token Exhaustion and Throttling**
+### **Background: Mitigating Token Exhaustion and Throttling**
 
 In high-traffic environments, such as those using Open AI, managing token exhaustion and throttling is essential to ensure smooth operation and even distribution of traffic across multiple instances.
 
 APIM's load balancing feature was developed to address these issues by distributing incoming traffic across multiple backend services. This approach helps prevent any single backend from becoming a bottleneck, thus reducing the risk of token exhaustion and minimizing the impact of throttling.
 
-#### **Key Use Cases for APIM’s Load Balancing Feature**
+### **Key Use Cases for APIM’s Load Balancing Feature**
 
 1. **Distributing Traffic Across Multiple Backends**:
    APIM’s load balancing allows you to spread incoming requests across multiple backend services. This distribution is crucial for maintaining system stability, especially when backends have their own circuit breakers. By ensuring an even distribution of requests, load balancing helps prevent any one backend from being overwhelmed.
@@ -22,7 +22,7 @@ APIM's load balancing feature was developed to address these issues by distribut
 4. **Managing Multiple Vendors**:
    When working with multiple vendors offering similar services, load balancing can route traffic based on specific criteria. This capability ensures that requests are directed to the most suitable vendor, optimizing service quality and operational efficiency.
 
-#### **Load Balancing Strategies in APIM**
+### **Load Balancing Strategies in APIM**
 
 APIM provides several load balancing strategies to cater to different traffic management needs. Each strategy can be configured with weights and priorities ranging from 1 to 100, allowing for fine-tuned control over traffic distribution:
 
@@ -38,12 +38,12 @@ APIM provides several load balancing strategies to cater to different traffic ma
    - **Description**: In the priority-based strategy, backends are organized into priority groups, with each group having a priority value between 1 and 100. Requests are routed based on these priority levels, and within each group, traffic can be distributed evenly or according to assigned weights.
    - **Use Case**: Effective for scenarios where specific backends need to handle traffic before others. This approach is beneficial for phased rollouts, where certain services should be prioritized based on operational needs or readiness.
 
-#### **Configuring Backend Pools**
+### **Configuring Backend Pools**
 
 APIM allows up to 30 backends to be included in a single load balancing pool. This flexibility supports a range of backend configurations and traffic management strategies. Here’s how to configure backend pools effectively:
 
 
-#### Scenario Overview
+### Scenario Overview
 
 Assume you have two APIs:
 
@@ -52,7 +52,7 @@ Assume you have two APIs:
 
 You need to configure load balancing such that 80% of the traffic is directed to **API A** and 20% to **API B**. 
 
-#### Steps to Configure Load Balancing
+### Steps to Configure Load Balancing
 
 1. **Create Backends for Each API**
 
@@ -114,7 +114,7 @@ You need to configure load balancing such that 80% of the traffic is directed to
    }
    ```
   ![Request](/Images/APILB/sampleLbPoolRequest.jpg)
-   #### Key Parameters for Backend Service Configuration  ####
+   ### Key Parameters for Backend Service Configuration  ####
 
    - **id**: Backend Service Identifier
       - **Purpose**: The **`id`** field uniquely identifies a backend service within your API Management service. This ID is essential for referencing the specific backend you wish to configure.
