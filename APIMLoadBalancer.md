@@ -133,7 +133,7 @@ You need to configure load balancing such that 80% of the traffic is directed to
   
    **Expected Response:**
 
-   On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created. We should be able to see the backend Creted in Azure Portal
+   On successful execution, you should receive a `201 Created` response code indicating that the backend pool has been created. We should be able to see the backend created in Azure Portal
 
    
 
