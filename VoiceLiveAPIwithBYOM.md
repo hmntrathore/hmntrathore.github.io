@@ -165,13 +165,13 @@ wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime
 
 Where:
 
-- **<your-byom-mode>** = byom-azure-openai-chat-completion OR byom-azure-openai-realtime  
-- **<your-model-deployment>** = the Foundry model deployment name  
+- **your-byom-mode** = byom-azure-openai-chat-completion OR byom-azure-openai-realtime  
+- **your-model-deployment** = the Foundry model deployment name  
 
 
 
 
-📁 [**Sample Code Repository:**](https://github.com/hmntrathore/sampleVoiceLiveBYOM)
+📁 [**Sample Code Repository**](https://github.com/hmntrathore/sampleVoiceLiveBYOM)
 
 # Benefits of Voice Live + BYOM
 
