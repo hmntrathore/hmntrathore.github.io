@@ -1,93 +1,154 @@
+# Enabling Azure Voice Live API with BYOM (Bring Your Own Model): A Complete Technical Guide
 
----
-title: "Enabling Voice Live API with BYOM for India"
-description: "A comprehensive technical guide for deploying Azure Voice Live API with Bring Your Own Model (BYOM) in India regions, ensuring compliance, performance, and customisation."
-author: "Hemant Rathore"
-date: "2025-12-01"
-layout: post
----
+Real-time voice interactions are becoming a critical capability for modern enterprise applications. Azure’s **Voice Live API** takes this to the next level by merging:
 
-# 🇮🇳 Enabling Voice Live API with BYOM for India: A Complete Technical Guide
+- **Speech Recognition** – Converts user speech to text with high accuracy  
+- **Generative AI** – Understands user intent and generates contextual, intelligent responses  
+- **Text-to-Speech** – Produces natural, human-like audio responses  
 
-## 🌟 Why This Matters
-Voice-driven experiences are transforming customer engagement, support, and automation across industries. Azure **Voice Live API** simplifies real-time voice interactions by combining:
-- **Speech Recognition** – Converts spoken words into text.
-- **Generative AI** – Understands context and generates intelligent responses.
-- **Text-to-Speech** – Converts AI responses back into natural-sounding voice.
-
-**Bring Your Own Model (BYOM)** adds flexibility and control:
-- **Customisation:** Use fine-tuned models for Indian languages and domain-specific needs.
-- **Compliance:** Host models in India regions to meet data residency regulations.
-- **Performance:** Control throughput and latency with Provisioned Throughput Units (PTUs).
-
-> ✅ **Compliance Reference:** [Microsoft Trust Center – Regional Compliance](https://www.microsoft.com/en-us/trust-center/compliance/regional-country-compliance)
+But the real transformation comes with the capability to **Bring Your Own Model (BYOM)**—allowing organisations to integrate their **fine-tuned, proprietary, or region-specific models** for complete control and compliance.
 
 ---
 
-## 🔍 What You’ll Learn
-This guide explains:
-- **What is Voice Live API and BYOM?**
-- **Why BYOM is critical for India deployments**
-- **Step-by-step setup using Azure AI Foundry**
-- **Authentication and secure integration**
-- **SDK configuration and testing**
-- **Troubleshooting and scaling strategies**
+## Why BYOM Matters for Enterprises
+
+Modern enterprises often require more than what generic, shared AI models can provide. BYOM unlocks:
+
+### ✔ Regional Compliance
+Host the model in a specific region to meet **data residency**, **sovereignty**, and **local compliance** requirements.
+
+### ✔ Domain-Specific Accuracy
+Use fine-tuned or proprietary models for industries like BFSI, Healthcare, Telecom, or Government.
+
+### ✔ Predictable Performance with PTUs
+Dedicated **Provisioned Throughput Units (PTUs)** guarantee consistent low-latency performance.
+
+### ✔ Full Control
+Select and manage the exact model version, deployment, and scaling strategy.
 
 ---
 
-## 🏗 Architecture Overview
-The solution uses **two Azure AI Foundry resources**:
-- **Voice Live Resource (Central India):** Handles real-time voice sessions.
-- **Model Resource (South India):** Hosts your custom GPT model for BYOM.
+## Managed Models vs BYOM
 
-https://learn.microsoft.com/en-us/azure/ai-services/media/voice-live-architecture.png
-
-> **Learn More:** [Create a Foundry Resource – Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource)
-
----
-
-## ✅ Prerequisites
-- Azure subscription with Contributor or Owner role.
-- Azure CLI installed and logged in.
-- Microsoft Entra ID (Azure AD) permissions for role assignment.
-- Voice Live SDK (Python or C#).
-- Basic familiarity with Azure services.
+| Feature | Managed Models (Default) | BYOM (Bring Your Own Model) |
+|--------|---------------------------|------------------------------|
+| **Control** | Limited | Full control |
+| **Compliance** | Region-dependent | Guaranteed data residency |
+| **Performance** | Shared capacity | Dedicated PTUs |
+| **Customization** | Minimal | High – fine-tuned or custom |
+| **Cost** | Pay-per-use | PTU-based flexibility |
 
 ---
 
-## ⚙️ How to Implement
+## Architecture Overview
 
-### **Step 1: Create Voice Live Resource (Central India)**
-Sign in to https://portal.azure.com → Create Resource → AI Foundry → Region: Central India  
-Reference: [Foundry Quickstart](https://learn.microsoft.com/en-us/azure/ai-services/multi-service-resource?pivots=azportal)
+*(Insert architecture diagram if needed)*
+
+This architecture enables:
+
+- Low-latency, real-time conversations  
+- Secure access using Managed Identity  
+- Decoupled deployment of voice + model  
+- Cross-region model flexibility  
 
 ---
 
-### **Step 2: Deploy Model in South India**
-Create another Foundry resource in **South India** and deploy GPT-4o or a fine-tuned model.  
-Reference: https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models?view=foundry-classic
+# Implementation Guide
+
+Below is the complete flow to enable Voice Live API using your own model (BYOM).
 
 ---
 
-### **Step 3: Configure Managed Identity**
-Enable system-assigned identity and assign role:
+## Step 1: Create Voice Live Resource
+
+1. Open **Azure Portal**
+2. Create a **Voice Live** resource (Azure AI Foundry)
+3. Select the region for real-time voice processing
+
+---
+
+## Step 2: Deploy Your Model (GPT-4o or Fine-Tuned Model)
+
+1. Create/Use a separate Azure AI Foundry resource  
+2. Deploy:  
+   - GPT-4o  
+   - GPT-4o-mini  
+   - A fine-tuned model  
+3. Ensure the deployment supports **chat completion + voice**
+
+📘 Reference:  
+https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models
+
+---
+
+## Step 3: Configure Managed Identity (Zero Secrets)
 
 ```bash
-# Enable identity on Voice Live resource
+# Assign identity to Voice Live resource
 az cognitiveservices account identity assign \
-  --name VoiceLive-Central \
+  --name <VoiceLiveResource> \
   --resource-group <RG> \
   --subscription <SUB_ID>
 
-# Get principal ID
+# Get the principal ID
 VOICE_PRINCIPAL_ID=$(az cognitiveservices account show \
-  --name VoiceLive-Central \
+  --name <VoiceLiveResource> \
   --resource-group <RG> \
   --subscription <SUB_ID> \
   --query "identity.principalId" -o tsv)
 
-# Assign Azure AI User role on model resource
+# Assign role to access the model resource
 az role assignment create \
   --assignee-object-id "$VOICE_PRINCIPAL_ID" \
   --role "Azure AI User" \
   --scope "/subscriptions/<MODEL_SUB>/resourceGroups/<MODEL_RG>/providers/Microsoft.CognitiveServices/accounts/<MODEL_RES>"
+```
+## Step 4: Configure Environment Variables
+
+Set the following environment variables:
+
+```text
+AZURE_VOICELIVE_ENDPOINT=https://your-resource.cognitiveservices.azure.com/
+AZURE_VOICELIVE_API_KEY=your-api-key
+AZURE_VOICELIVE_MODEL=gpt-4o-chat
+VOICELIVE_BYOM_MODE=byom-azure-openai-chat-completion
+VOICELIVE_FOUNDRY_RESOURCE=model-resource-name
+AZURE_VOICELIVE_VOICE=en-IN-Meera:DragonHDIndicLatestNeural
+AZURE_VOICELIVE_LANGUAGE=Hindi
+```
+
+## Step 5: Run the Quickstart
+
+Run the Python sample using Managed Identity:
+
+```bash
+python voice-live-quickstart.py --use-token-credential
+```
+
+📁 **Sample Code Repository:**  
+https://github.com/hmntrathore/sampleVoiceLiveBYOM
+
+# Benefits of Voice Live + BYOM
+
+- Context-aware, domain-trained assistants  
+- Zero secret leakage (Managed Identity)  
+- Predictable low-latency voice performance  
+- Region-flexible architecture  
+
+# Conclusion
+
+Azure Voice Live API combined with BYOM offers enterprises:
+
+- Greater accuracy  
+- Full compliance  
+- Secure zero-trust design  
+- Flexible regional deployment  
+- Dedicated performance via PTUs  
+
+# References
+
+- Voice Live API Overview: https://learn.microsoft.com/azure/ai-services/voice-live/overview  
+- BYOM Guide: https://learn.microsoft.com/azure/ai-services/voice-live/byom  
+- Azure AI Foundry Docs: https://learn.microsoft.com/azure/ai-foundry/  
+- Model Deployment Guide: https://learn.microsoft.com/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models  
+- Azure Speech Services: https://learn.microsoft.com/azure/ai-services/speech-service/
