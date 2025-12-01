@@ -1,5 +1,6 @@
-# Enabling Azure Voice Live API with BYOM (Bring Your Own Model): A Complete Technical Guide
 
+# Enabling Azure Voice Live API with BYOM (Bring Your Own Model): A Complete Technical Guide
+ ![flow](/Images/ByomHeader.png)
 ### *Fine-tuned accuracy, regional compliance, and secure real-time voice intelligence*
 
 Azure **Voice Live API**, combined with **Bring Your Own Model (BYOM)**, enables you to integrate your own custom or fine‑tuned models into real‑time voice workflows. This is ideal for scenarios where enterprises require:
