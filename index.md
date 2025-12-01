@@ -12,6 +12,11 @@ Feel free to reach out to me on [LinkedIn](https://www.linkedin.com/in/hmntratho
 
 ## Articles
 
+
+### [Enabling Azure Voice Live API with BYOM (Bring Your Own Model): A Complete Technical Guide](https://hmntrathore.github.io/VoiceLiveAPIwithBYOM)
+Unlock real-time voice experiences with Azure Voice Live API and BYOM – delivering custom models, compliance, and performance at scale.
+
+
 ### [How to Retrieve a Bearer Token via API for Azure](https://hmntrathore.github.io/BearerToken)
 Learn how to authenticate and authorize API requests to Azure services securely by retrieving a bearer token. Read more [here](https://hmntrathore.github.io/BearerToken).
 
