@@ -47,7 +47,7 @@ BYOM allows you to keep full control of the *intelligence* while Voice Live deli
 
 ## Architecture Overview
 
-*(Insert architecture diagram if needed)*
+ ![flow](/Images/byom.png)
 
 This architecture enables:
 
@@ -86,7 +86,7 @@ Below is the complete flow to enable Voice Live API using your own model (BYOM).
 3. Ensure the deployment supports **chat completion + voice**
 
 Reference:  
-https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models
+[Deploy Foundry Models](https://learn.microsoft.com/en-us/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models)
 
 
 
@@ -144,12 +144,9 @@ az role assignment create --assignee-object-id ${identity_principal_id} --role "
 
 ### Reference Documentation
 
-- Speech Service Quickstarts →  
-  https://learn.microsoft.com/en-us/azure/ai-services/speech-service/quickstarts  
-- BYOM Guide →  
-  https://learn.microsoft.com/en-us/azure/ai-services/speech-service/bring-own-model?tabs=python  
-- GitHub Sample →  
-  https://github.com/hmntrathore/sampleVoiceLiveBYOM  
+- [Speech Service Quickstarts](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/quickstarts)  
+- [BYOM Guide](https://learn.microsoft.com/en-us/azure/ai-services/speech-service/bring-own-model?tabs=python)_  
+- [GitHub Sample]( https://github.com/hmntrathore/sampleVoiceLiveBYOM)
 
 
 
@@ -172,8 +169,7 @@ Where:
 
 
 
-📁 **Sample Code Repository:**  
-https://github.com/hmntrathore/sampleVoiceLiveBYOM
+📁 [**Sample Code Repository:**](https://github.com/hmntrathore/sampleVoiceLiveBYOM)
 
 # Benefits of Voice Live + BYOM
 
@@ -196,8 +192,8 @@ Azure Voice Live API combined with BYOM offers enterprises:
 
 # References
 
-- Voice Live API Overview: https://learn.microsoft.com/azure/ai-services/voice-live/overview  
-- BYOM Guide: https://learn.microsoft.com/azure/ai-services/voice-live/byom  
-- Azure AI Foundry Docs: https://learn.microsoft.com/azure/ai-foundry/  
-- Model Deployment Guide: https://learn.microsoft.com/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models  
-- Azure Speech Services: https://learn.microsoft.com/azure/ai-services/speech-service/
+- [Voice Live API Overview](https://learn.microsoft.com/azure/ai-services/voice-live/overview)
+- [BYOM Guide](https://learn.microsoft.com/azure/ai-services/voice-live/byom)
+- [Azure AI Foundry Docs](https://learn.microsoft.com/azure/ai-foundry)
+- [Model Deployment Guide:](https://learn.microsoft.com/azure/ai-foundry/foundry-models/how-to/deploy-foundry-models)
+- [Azure Speech Services](https://learn.microsoft.com/azure/ai-services/speech-service)
